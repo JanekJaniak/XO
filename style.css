@@ -1,3 +1,6 @@
+.APP {
+  text-align: center;
+}
 .game-board {
   background-color: #0808aa;
   width: 80vw;
@@ -13,5 +16,14 @@
   height: 24vw;
   width: 24vw;
   margin: auto;
-  
+}
+
+.players-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
 }
