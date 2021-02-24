@@ -1,0 +1,17 @@
+.game-board {
+  background-color: #0808aa;
+  width: 80vw;
+  height: 80vw;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1vw
+}
+
+.tile {
+  background-color: blue;
+  height: 24vw;
+  width: 24vw;
+  margin: auto;
+  
+}
