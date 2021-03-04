@@ -11,12 +11,6 @@
   padding: 1vw
 }
 
-.game-board  div {
-  width: 200px;
-  height: 200px;
-  background-color: orange;
-}
-
 .tile {
   background-color: blue;
   height: 24vw;
