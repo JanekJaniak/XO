@@ -1,0 +1,35 @@
+.APP {
+  text-align: center;
+}
+.game-board {
+  background-color: #050588;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1vw
+}
+
+.tile {
+  background-color: #0849aa;
+  height: 180px;
+  width: 180px;
+  margin: auto;
+}
+
+.players-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 25vw;
+  height: 5vw;
+  margin: 1vw
+}
