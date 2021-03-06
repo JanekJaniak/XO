@@ -1,6 +1,6 @@
-const board = document.querySelector('[data-board]')
+const board = document.querySelector('[data-board]');
 
-let grid = []
+let grid = [];
 
 const renderGrid = () => {
   let i;
@@ -9,10 +9,18 @@ const renderGrid = () => {
     tile.innerHTML = '';
     tile.dataset.id = i;
     tile.className = 'tile'
-    grid.push(tile);
+    tile.addEventListener('click', (event) => {
+      move(event.target.dataset.id)
+    })
+    grid.push(null);
     board.appendChild(tile) 
   }
-}
+};
 
-renderGrid()
+const move = (id) => {
+  console.log(id);
+  
+}
+ 
+renderGrid();
 
