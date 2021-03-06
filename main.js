@@ -1,6 +1,14 @@
 const board = document.querySelector('[data-board]');
 
-let grid = [];
+const gameState = {
+  grid: [],
+  activePlayer: '',
+  playerMoves: {
+    x: [],
+    o: []
+  }
+}
+  
 
 const renderGrid = () => {
   let i;
@@ -12,7 +20,7 @@ const renderGrid = () => {
     tile.addEventListener('click', (event) => {
       move(event.target.dataset.id)
     })
-    grid.push(null);
+    gameState.grid.push(null);
     board.appendChild(tile) 
   }
 };
