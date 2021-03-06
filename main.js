@@ -44,9 +44,8 @@ const move = (id) => {
 const startGame = () => {
   renderGrid();
   setActivePlayer();
-
 }
 
-startGame()
+document.querySelector('[data-startButton]').addEventListener('click', startGame);
 
 
