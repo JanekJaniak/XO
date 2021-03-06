@@ -1,4 +1,5 @@
 const board = document.querySelector('[data-board]');
+const gameStatus = document.querySelector('[data-game-status]')
 
 const gameState = {
   grid: [],
@@ -25,10 +26,27 @@ const renderGrid = () => {
   }
 };
 
+const setActivePlayer = () => {
+  if(gameState.activePlayer === '') {
+    const playerX = document.querySelector('[data-playerX]') 
+
+    gameState.activePlayer = 'x'
+    playerX.className = 'player-status-active'
+    gameStatus.innerHTML = "Player's X move"
+  }
+}
+
 const move = (id) => {
   console.log(id);
   
 }
- 
-renderGrid();
+
+const startGame = () => {
+  renderGrid();
+  setActivePlayer();
+
+}
+
+startGame()
+
 

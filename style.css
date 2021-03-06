@@ -33,3 +33,7 @@
   height: 5vw;
   margin: 1vw
 }
+
+.player-status-active {
+  color: rgb(37, 247, 9)
+}
