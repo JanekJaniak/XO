@@ -3,7 +3,7 @@ const gameStatus = document.querySelector('[data-game-status]')
 const playerX = document.querySelector('[data-playerX]')
 const playerY = document.querySelector('[data-playerY]')
 
-const winingConditions = [
+const winningConditions = [
   [1,2,3],
   [4,5,6],
   [7,8,9],
@@ -28,10 +28,10 @@ const renderGrid = () => {
   for(i=0; i<9; i++) {
     let tile = document.createElement('div');
     tile.innerHTML = '';
-    tile.dataset.id = i;
+    tile.dataset.tileId = i;
     tile.className = 'tile';
     tile.addEventListener('click', (event) => {
-      newMove(event.target.dataset.id);
+      newMove(event.target.dataset.tileId);
     })
     gameState.grid.push(null);
     board.appendChild(tile); 
@@ -55,15 +55,18 @@ const setActivePlayer = () => {
 
 const newMove = (id) => {
 
-  if(gameState.grid.indexOf(id) === -1) {
+  if(!gameState.grid.includes(id)) {
     gameState.playerMoves[gameState.activePlayer].push(id);
     gameState.grid.push(id);
+
+
+    checkWinnigConditions()
   } else {
     gameStatus.innerHTML = 'Choose another cell'
   }
 
   console.log(id);
-  console.log(winingConditions);
+  console.log(winningConditions);
   console.log(gameState.playerMoves.x);
   
 }
@@ -79,7 +82,12 @@ const restartGame = () => {
   playerX.className = '';
   playerY.className = '';
   gameState.activePlayer = '';
+  gameState.grid = '';
   gameStatus.innerHTML = 'Push start button'
+}
+
+const checkWinnigConditions = () => {
+  console.log('no win');
 }
 
 document.querySelector('[data-startButton]').addEventListener('click', startGame);
