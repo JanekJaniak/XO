@@ -54,8 +54,17 @@ const setActivePlayer = () => {
 }
 
 const newMove = (id) => {
+
+  if(gameState.grid.indexOf(id) === -1) {
+    gameState.playerMoves[gameState.activePlayer].push(id);
+    gameState.grid.push(id);
+  } else {
+    gameStatus.innerHTML = 'Choose another cell'
+  }
+
   console.log(id);
   console.log(winingConditions);
+  console.log(gameState.playerMoves.x);
   
 }
 
