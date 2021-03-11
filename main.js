@@ -18,8 +18,8 @@ const gameState = {
   grid: [],
   activePlayer: '',
   playerMoves: {
-    x: [],
-    o: []
+    X: [],
+    O: []
   }
 }
   
@@ -31,7 +31,7 @@ const renderGrid = () => {
     tile.dataset.tileId = i;
     tile.className = 'tile';
     tile.addEventListener('click', (event) => {
-      newMove(event.target.dataset.tileId);
+      addNewMove(event.target);
     })
     gameState.grid.push(null);
     board.appendChild(tile); 
@@ -39,39 +39,37 @@ const renderGrid = () => {
 };
 
 const setActivePlayer = () => {
-  if(gameState.activePlayer === '' || gameState.activePlayer === 'o') {
+  if(gameState.activePlayer === '' || gameState.activePlayer === 'O') {
 
-    gameState.activePlayer = 'x';
+    gameState.activePlayer = 'X';
+    playerY.className = '';
     playerX.className = 'player-status-active';
     gameStatus.innerHTML = "Player's X move";
   } else {
 
-    gameState.activePlayer = 'o';
+    gameState.activePlayer = 'O';
     playerX.className = '';
     playerY.className = 'player-status-active';
-    gameStatus.innerHTML = "Player's Y move";
+    gameStatus.innerHTML = "Player's O move";
   }
 }
 
-const newMove = (id) => {
-  
+const addNewMove = (target) => {
+  const targetTile = target.dataset.tileId
 
-  if(!gameState.grid.includes(id)) {
-    gameState.playerMoves[gameState.activePlayer].push(id);
-    gameState.grid.push(id);
-    
-
+  if(!gameState.grid.includes(targetTile)) {
+    gameState.playerMoves[gameState.activePlayer].push(targetTile);
+    gameState.grid.push(targetTile);
+    target.innerHTML = gameState.activePlayer
 
     checkWinnigConditions()
+    setActivePlayer()
   } else {
     gameStatus.innerHTML = 'Choose another cell'
   }
 
-  console.log(id);
-  console.log(winningConditions);
-  console.log(gameState.playerMoves.x);
-  console.log(document.querySelectorAll(`[data-tileId='${id}']`));
-  
+  console.log(gameState.playerMoves.X);
+  console.log(gameState.playerMoves.O);
 }
 
 const startGame = () => {
@@ -85,7 +83,7 @@ const restartGame = () => {
   playerX.className = '';
   playerY.className = '';
   gameState.activePlayer = '';
-  gameState.grid = '';
+  gameState.grid = [];
   gameStatus.innerHTML = 'Push start button'
 }
 
