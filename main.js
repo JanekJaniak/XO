@@ -54,10 +54,12 @@ const setActivePlayer = () => {
 }
 
 const newMove = (id) => {
+  
 
   if(!gameState.grid.includes(id)) {
     gameState.playerMoves[gameState.activePlayer].push(id);
     gameState.grid.push(id);
+    
 
 
     checkWinnigConditions()
@@ -68,6 +70,7 @@ const newMove = (id) => {
   console.log(id);
   console.log(winningConditions);
   console.log(gameState.playerMoves.x);
+  console.log(document.querySelectorAll(`[data-tileId='${id}']`));
   
 }
 
