@@ -108,7 +108,7 @@ const checkWinnigConditions = () => {
 }
 
 const checkIfDraw = () => {
-  if(gameState.playerMoves.X.length == 5) {
+  if(gameState.grid.length == 9) {
     gameState.playerWon = 'Draw'
     gameStatus.innerHTML = `It's a draw. Play again!`
     gameStatus.className = 'game-status-draw'
