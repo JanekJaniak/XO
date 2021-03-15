@@ -72,24 +72,19 @@ const addNewMove = (target) => {
   console.log(gameState.playerMoves.O);
 }
 
-const startGame = () => {
-  board.innerHTML = ''
-  renderGrid();
-  setActivePlayer();
-}
-
-const restartGame = () => {
+const startNewGame = () => {
   board.innerHTML = '';
+  renderGrid();
   playerX.className = '';
   playerY.className = '';
   gameState.activePlayer = '';
   gameState.grid = [];
   gameStatus.innerHTML = 'Push start button'
+  setActivePlayer();
 }
 
 const checkWinnigConditions = () => {
   console.log('no win');
 }
 
-document.querySelector('[data-startButton]').addEventListener('click', startGame);
-document.querySelector('[data-restartButton]').addEventListener('click', restartGame);
+document.querySelector('[data-startButton]').addEventListener('click', startNewGame);
