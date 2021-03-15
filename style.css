@@ -1,0 +1,58 @@
+.APP {
+  text-align: center;
+}
+
+.game-board {
+  background-color: #050588;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1vw
+}
+
+.tile {
+  background-color: #0849aa;
+  height: 120px;
+  width: 120px;
+  margin: auto;
+  font-size: 100px;
+}
+
+.tile-light {
+  background-color: #0849aa;
+  height: 120px;
+  width: 120px;
+  margin: auto;
+  font-size: 100px;
+  color: rgb(37, 247, 9);
+}
+
+.players-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 25vw;
+  height: 5vw;
+  margin: 1vw
+}
+
+.player-status-active {
+  color: rgb(37, 247, 9);
+}
+
+.game-status-win {
+  color: rgb(37, 247, 9);
+}
+
+.game-status-draw {
+  color: yellow;
+}
