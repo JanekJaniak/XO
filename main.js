@@ -4,14 +4,14 @@ const playerX = document.querySelector('[data-playerX]')
 const playerY = document.querySelector('[data-playerY]')
 
 const winningConditions = [
-  [1,2,3],
-  [4,5,6],
-  [7,8,9],
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
   [1,4,7],
   [2,5,8],
-  [3,6,9],
-  [1,5,9],
-  [3,5,7]
+  [0,4,8],
+  [2,4,6]
 ]
 
 const gameState = {
@@ -20,12 +20,12 @@ const gameState = {
   playerMoves: {
     X: [],
     O: []
-  }
+  },
+  playerWon: ''
 }
   
 const renderGrid = () => {
-  let i;
-  for(i=0; i<9; i++) {
+  for(let i=0; i<9; i++) {
     let tile = document.createElement('div');
     tile.innerHTML = '';
     tile.dataset.tileId = i;
@@ -55,21 +55,24 @@ const setActivePlayer = () => {
 }
 
 const addNewMove = (target) => {
-  const targetTile = target.dataset.tileId
+  if(gameState.playerWon == '') {
+    const targetTile = target.dataset.tileId
 
-  if(!gameState.grid.includes(targetTile)) {
-    gameState.playerMoves[gameState.activePlayer].push(targetTile);
-    gameState.grid.push(targetTile);
-    target.innerHTML = gameState.activePlayer
+    if(!gameState.grid.includes(targetTile)) {
+      gameState.playerMoves[gameState.activePlayer].push(parseInt(targetTile));
+      gameState.grid.push(targetTile);
+      target.innerHTML = gameState.activePlayer
+      
+      checkWinnigConditions()
 
-    checkWinnigConditions()
-    setActivePlayer()
-  } else {
-    gameStatus.innerHTML = 'Choose another cell'
-  }
-
-  console.log(gameState.playerMoves.X);
-  console.log(gameState.playerMoves.O);
+      if(gameState.playerWon == '') {
+        setActivePlayer()
+      } 
+      
+    } else {
+      gameStatus.innerHTML = 'Choose another cell'
+    }
+  } 
 }
 
 const startNewGame = () => {
@@ -79,12 +82,23 @@ const startNewGame = () => {
   playerY.className = '';
   gameState.activePlayer = '';
   gameState.grid = [];
-  gameStatus.innerHTML = 'Push start button'
+  gameState.playerMoves.X = [];
+  gameState.playerMoves.O = [];
+  gameStatus.innerHTML = 'Push start button';
+  gameState.playerWon = '';
   setActivePlayer();
 }
 
 const checkWinnigConditions = () => {
-  console.log('no win');
+  for(let i=0; i<8; i++) {
+    let isGameWon = winningConditions[i].every(value => gameState.playerMoves[gameState.activePlayer].includes(value));
+    
+    if(isGameWon === true) {
+      gameStatus.innerHTML = `Player ${gameState.activePlayer} has won`;
+      gameState.playerWon = gameState.activePlayer;
+      break;
+    }
+  }
 }
 
 document.querySelector('[data-startButton]').addEventListener('click', startNewGame);
