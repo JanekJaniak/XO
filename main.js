@@ -100,7 +100,7 @@ const checkWinnigConditions = () => {
       gameState.playerWon = gameState.activePlayer;
       gameStatus.className = 'game-status-win'
       
-      lightWinnigTiles(i);
+      lightUpWinnigTiles(i);
 
       break;
     }
@@ -115,7 +115,7 @@ const checkIfDraw = () => {
   }
 };
 
-const lightWinnigTiles = (i) => {
+const lightUpWinnigTiles = (i) => {
   let winningTiles = winningConditions[i]
 
   winningTiles.forEach(tile => {
