@@ -36,5 +36,13 @@
 }
 
 .player-status-active {
-  color: rgb(37, 247, 9)
+  color: rgb(37, 247, 9);
+}
+
+.game-status-win {
+  color: rgb(37, 247, 9);
+}
+
+.game-status-draw {
+  color: yellow;
 }

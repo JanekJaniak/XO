@@ -67,7 +67,8 @@ const addNewMove = (target) => {
 
       if(gameState.playerWon == '') {
         setActivePlayer()
-      } 
+        checkIfDraw()
+      }
       
     } else {
       gameStatus.innerHTML = 'Choose another cell'
@@ -85,6 +86,7 @@ const startNewGame = () => {
   gameState.playerMoves.X = [];
   gameState.playerMoves.O = [];
   gameStatus.innerHTML = 'Push start button';
+  gameStatus.className = 'game-status'
   gameState.playerWon = '';
   setActivePlayer();
 }
@@ -96,8 +98,18 @@ const checkWinnigConditions = () => {
     if(isGameWon === true) {
       gameStatus.innerHTML = `Player ${gameState.activePlayer} has won`;
       gameState.playerWon = gameState.activePlayer;
+      gameStatus.className = 'game-status-win'
+
       break;
     }
+  }
+}
+
+const checkIfDraw = () => {
+  if(gameState.playerMoves.X.length == 5) {
+    gameState.playerWon = 'Draw'
+    gameStatus.innerHTML = `It's a draw. Play again!`
+    gameStatus.className = 'game-status-draw'
   }
 }
 
