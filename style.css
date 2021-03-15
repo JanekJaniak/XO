@@ -1,6 +1,7 @@
 .APP {
   text-align: center;
 }
+
 .game-board {
   background-color: #050588;
   width: 400px;
@@ -55,4 +56,3 @@
 .game-status-draw {
   color: yellow;
 }
-
