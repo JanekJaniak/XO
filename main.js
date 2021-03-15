@@ -15,7 +15,7 @@ const winningConditions = [
 ]
 
 const gameState = {
-  grid: [],
+  usedTiles: [],
   activePlayer: '',
   playerMoves: {
     X: [],
@@ -33,7 +33,7 @@ const renderGrid = () => {
     tile.addEventListener('click', (event) => {
       addNewMove(event.target);
     })
-    gameState.grid.push(null);
+    gameState.usedTiles.push(null);
     board.appendChild(tile); 
   }
 };
@@ -58,9 +58,9 @@ const addNewMove = (target) => {
   if(gameState.playerWon == '') {
     const targetTile = target.dataset.tileId
 
-    if(!gameState.grid.includes(targetTile)) {
+    if(!gameState.usedTiles.includes(targetTile)) {
       gameState.playerMoves[gameState.activePlayer].push(parseInt(targetTile));
-      gameState.grid.push(targetTile);
+      gameState.usedTiles.push(targetTile);
       target.innerHTML = gameState.activePlayer
       
       checkWinnigConditions()
@@ -82,7 +82,7 @@ const startNewGame = () => {
   playerX.className = '';
   playerO.className = '';
   gameState.activePlayer = '';
-  gameState.grid = [];
+  gameState.usedTiles = [];
   gameState.playerMoves.X = [];
   gameState.playerMoves.O = [];
   gameStatus.innerHTML = 'Push start button';
@@ -108,7 +108,7 @@ const checkWinnigConditions = () => {
 }
 
 const checkIfDraw = () => {
-  if(gameState.grid.length == 9) {
+  if(gameState.usedTiles.length == 9) {
     gameState.playerWon = 'Draw'
     gameStatus.innerHTML = `It's a draw. Play again!`
     gameStatus.className = 'game-status-draw'
