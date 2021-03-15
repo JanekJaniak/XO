@@ -1,7 +1,7 @@
 const board = document.querySelector('[data-board]');
 const gameStatus = document.querySelector('[data-game-status]')
 const playerX = document.querySelector('[data-playerX]')
-const playerY = document.querySelector('[data-playerY]')
+const playerO = document.querySelector('[data-playerO]')
 
 const winningConditions = [
   [0,1,2],
@@ -42,14 +42,14 @@ const setActivePlayer = () => {
   if(gameState.activePlayer === '' || gameState.activePlayer === 'O') {
 
     gameState.activePlayer = 'X';
-    playerY.className = '';
+    playerO.className = '';
     playerX.className = 'player-status-active';
     gameStatus.innerHTML = "Player's X move";
   } else {
 
     gameState.activePlayer = 'O';
     playerX.className = '';
-    playerY.className = 'player-status-active';
+    playerO.className = 'player-status-active';
     gameStatus.innerHTML = "Player's O move";
   }
 }
@@ -80,7 +80,7 @@ const startNewGame = () => {
   board.innerHTML = '';
   renderGrid();
   playerX.className = '';
-  playerY.className = '';
+  playerO.className = '';
   gameState.activePlayer = '';
   gameState.grid = [];
   gameState.playerMoves.X = [];
@@ -99,6 +99,8 @@ const checkWinnigConditions = () => {
       gameStatus.innerHTML = `Player ${gameState.activePlayer} has won`;
       gameState.playerWon = gameState.activePlayer;
       gameStatus.className = 'game-status-win'
+      
+      lightWinnigTiles(i);
 
       break;
     }
@@ -111,6 +113,14 @@ const checkIfDraw = () => {
     gameStatus.innerHTML = `It's a draw. Play again!`
     gameStatus.className = 'game-status-draw'
   }
+}
+
+const lightWinnigTiles = (i) => {
+  let winningTiles = winningConditions[i]
+
+  winningTiles.forEach(tile => {
+    document.querySelector(`[data-tile-id='${tile}']`).className = 'tile-light'
+  });
 }
 
 document.querySelector('[data-startButton]').addEventListener('click', startNewGame);

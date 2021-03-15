@@ -19,6 +19,15 @@
   font-size: 100px;
 }
 
+.tile-light {
+  background-color: #0849aa;
+  height: 120px;
+  width: 120px;
+  margin: auto;
+  font-size: 100px;
+  color: rgb(37, 247, 9);
+}
+
 .players-info {
   display: flex;
   justify-content: space-around;
@@ -46,3 +55,4 @@
 .game-status-draw {
   color: yellow;
 }
+
