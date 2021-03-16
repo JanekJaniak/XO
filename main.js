@@ -1,8 +1,10 @@
+// Fetch important elements from HTML
 const board = document.querySelector('[data-board]');
 const gameStatus = document.querySelector('[data-game-status]');
 const playerX = document.querySelector('[data-playerX]');
 const playerO = document.querySelector('[data-playerO]');
 
+//Array with all winnig posibilities
 const winningConditions = [
   [0,1,2],
   [3,4,5],
@@ -14,6 +16,7 @@ const winningConditions = [
   [2,4,6]
 ];
 
+//Object which stores all important informations about game state
 const gameState = {
   usedTiles: [],
   activePlayer: '',
@@ -24,6 +27,7 @@ const gameState = {
   playerWon: ''
 };
   
+//Functions which renders game grid in HTML, adds dataset atributes and classes to tiles in game board, adds eventlistener for those tiles
 const renderGrid = () => {
   for(let i=0; i<9; i++) {
     let tile = document.createElement('div');
@@ -40,6 +44,8 @@ const renderGrid = () => {
   }
 };
 
+//Function which checks active player, switches active player after every move, sets new active player, adds active class to active player,
+// and removes active class from last player
 const setActivePlayer = () => {
   if(gameState.activePlayer === '' || gameState.activePlayer === 'O') {
     gameState.activePlayer = 'X';
@@ -54,6 +60,8 @@ const setActivePlayer = () => {
   }
 };
 
+//Functions which checks if any player has won or if ther is a draw, checks if tile selected by player is not already selected, 
+//appedns active player symbol to selected tile. Checks for winning conditions or draw, if not it runs setActiveplayer function
 const addNewMove = (target) => {
   if(gameState.playerWon == '') {
     const targetTile = target.dataset.tileId
@@ -76,6 +84,8 @@ const addNewMove = (target) => {
   } 
 };
 
+//Function which calls renderGrid function, clears all informations about game state,restets game status information and class,
+//clears all classes and calls setActivePlayer function
 const startNewGame = () => {
   board.innerHTML = '';
   renderGrid();
@@ -91,6 +101,8 @@ const startNewGame = () => {
   setActivePlayer();
 };
 
+//Function which checks if active players moves array includes any of eight arrays of winning condtions. If so it chnges game status info, it's class
+//and calls lightUpWinnigTiles
 const checkWinnigConditions = () => {
   for(let i=0; i<8; i++) {
     let isGameWon = winningConditions[i].every(value => gameState.playerMoves[gameState.activePlayer].includes(value));
@@ -107,6 +119,7 @@ const checkWinnigConditions = () => {
   }
 };
 
+//Function which checks if all moves are mode and there is no winning set
 const checkIfDraw = () => {
   if(gameState.usedTiles.length == 9) {
     gameState.playerWon = 'Draw'
@@ -115,6 +128,7 @@ const checkIfDraw = () => {
   }
 };
 
+//Function which adds light up class to winning tiles
 const lightUpWinnigTiles = (i) => {
   let winningTiles = winningConditions[i]
 
@@ -123,4 +137,5 @@ const lightUpWinnigTiles = (i) => {
   });
 };
 
+//Adds event listener to start new game button
 document.querySelector('[data-startButton]').addEventListener('click', startNewGame);
